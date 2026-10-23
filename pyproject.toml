@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dev-helper-marketplace"
+version = "0.1.0"
+description = "Development helper skills and bundled command-line tools"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = []
+
+[project.optional-dependencies]
+mkdocs = ["PyYAML>=6.0.2,<7"]
+
+[dependency-groups]
+test = ["pytest>=8.4,<10"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--strict-markers --import-mode=importlib -ra"
+markers = [
+  "integration: real Skills CLI installation (requires Bun and may need network)",
+  "cli: command-line interface behavior and exit codes",
+]
+
+[project.scripts]
+docs-consistency-guard = "docs_guard:main"
+
+[tool.setuptools]
+py-modules = ["docs_guard"]
+package-dir = {"" = "plugins/docs-consistency-guard/skills/docs-consistency-guard/scripts"}

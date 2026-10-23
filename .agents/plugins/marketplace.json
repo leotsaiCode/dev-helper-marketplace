@@ -1,0 +1,12 @@
+{
+  "name": "dev-helper-marketplace",
+  "interface": {"displayName": "Development helper marketplace"},
+  "plugins": [
+    {
+      "name": "docs-consistency-guard",
+      "source": {"source": "local", "path": "./plugins/docs-consistency-guard"},
+      "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
+      "category": "Productivity"
+    }
+  ]
+}

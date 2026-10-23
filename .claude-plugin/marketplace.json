@@ -1,0 +1,12 @@
+{
+  "name": "dev-helper-marketplace",
+  "description": "Development helper skills for coding agents.",
+  "owner": {"name": "dev-helper-marketplace contributors"},
+  "plugins": [
+    {
+      "name": "docs-consistency-guard",
+      "source": "./plugins/docs-consistency-guard",
+      "description": "Read-only documentation consistency checks and review candidates."
+    }
+  ]
+}
