@@ -34,7 +34,7 @@ but that does not mean the install integration test has passed. `--strict-marker
 
 The install check uses Skills CLI 1.7.4, a temporary directory, and a project-level install; it does not change the user's global settings.
 It installs each skill picked from the collection and compares files and bytes, and also tests selecting multiple skills and installing them all at once.
-When upgrading Skills CLI, update the pinned version in both the verification script and the README.
+When upgrading Skills CLI, update the pinned version in the verification script.
 
 See docs-consistency-guard's [checks](plugins/docs-consistency-guard/skills/docs-consistency-guard/references/checks.md) for check semantics.
 When adding a rule, document what can be observed with certainty, its false-positive scope, and the verification step, and add behavior tests.

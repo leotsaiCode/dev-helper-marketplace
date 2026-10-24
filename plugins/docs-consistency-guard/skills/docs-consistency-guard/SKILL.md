@@ -14,7 +14,7 @@ Requires Python 3.10+ on Linux or macOS; PyYAML is optional for MkDocs YAML.
    bundled scanner from the skill directory with an explicit target root:
 
    ```sh
-   uv run --no-project scripts/docs_guard.py --root /path/to/repository --format json
+   uv run --no-project scripts/docs_guard.py --root <TARGET_REPO> --format json
    ```
 
    Use an absolute script path if the working directory differs. If MkDocs

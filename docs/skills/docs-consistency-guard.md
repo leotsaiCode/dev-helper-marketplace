@@ -9,26 +9,26 @@ It only reads and never modifies documentation; possible staleness and rule conf
 Requires Python 3.10+ on Linux or macOS. The examples below use [uv](https://docs.astral.sh/uv/);
 the CLI core uses only the Python standard library. Scanning does not use the network, read environment variables, or run Git, project code, or MkDocs plugins.
 
-Run from the root of the dev-helper-marketplace collection:
+Run from the root of the project you want to check:
 
 ```sh
-uv run --no-project plugins/docs-consistency-guard/skills/docs-consistency-guard/scripts/docs_guard.py --root /path/to/repo --format markdown
+uvx --from git+https://github.com/leotsaiCode/dev-helper-marketplace docs-consistency-guard --root . --format markdown
 ```
 
-To check MkDocs YAML, install the only optional runtime dependency, PyYAML:
+To check MkDocs YAML, add the only optional runtime dependency, PyYAML:
 
 ```sh
-uv run --no-editable --extra mkdocs docs-consistency-guard --root /path/to/repo --format json
-uv run --no-editable --extra mkdocs docs-consistency-guard --root /path/to/repo --format markdown --output /path/to/new-report.md
+uvx --from git+https://github.com/leotsaiCode/dev-helper-marketplace --with pyyaml docs-consistency-guard --root . --format json
+uvx --from git+https://github.com/leotsaiCode/dev-helper-marketplace --with pyyaml docs-consistency-guard --root . --format markdown --output docs-report.md
 ```
 
-You can also install the CLI with `uv tool install '.[mkdocs]'`. Without a MkDocs config you do not need this extra;
+You can also install the CLI with `uv tool install git+https://github.com/leotsaiCode/dev-helper-marketplace --with pyyaml`. Without a MkDocs config you do not need PyYAML;
 if a config exists but PyYAML is missing, the tool reports the check as incomplete with exit 2 instead of pretending it succeeded.
 Installing dependencies may use the network; scanning itself does not. For `--output`, the parent directory must already exist, the target file must not exist, and the parent path must not contain symlinks.
 On macOS, use `/private/tmp/...` instead of `/tmp/...`, which is usually a symlink.
 
 ```sh
-uv run --no-editable --extra mkdocs docs-consistency-guard --root /path/to/repo \
+uvx --from git+https://github.com/leotsaiCode/dev-helper-marketplace --with pyyaml docs-consistency-guard --root . \
   --mkdocs-config config/mkdocs.yml \
   --changed src/client.py --changed docs/setup.md --format json
 ```

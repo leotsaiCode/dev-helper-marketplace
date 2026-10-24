@@ -12,28 +12,22 @@ and register it in both marketplaces; put a new skill in its plugin's `skills/<s
 
 ## Install with Skills CLI
 
-Clone or download this repo first. Run the following from your working project directory, replacing the local path with your checkout path:
+Run the following from your working project directory:
 
 ```sh
 # List available skills
-bunx skills@1.7.4 add /absolute/path/to/dev-helper-marketplace --list
+bunx skills add leotsaiCode/dev-helper-marketplace --list
 
 # Pick one skill and install it for Claude Code and Codex
-bunx skills@1.7.4 add /absolute/path/to/dev-helper-marketplace \
+bunx skills add leotsaiCode/dev-helper-marketplace \
   --skill docs-consistency-guard --agent claude-code codex --copy --yes
 
 # Install every skill in the collection, still only for these two agents
-bunx skills@1.7.4 add /absolute/path/to/dev-helper-marketplace \
+bunx skills add leotsaiCode/dev-helper-marketplace \
   --skill '*' --agent claude-code codex --copy --yes
 ```
 
 Omit `--skill` to choose interactively. Add `--global` to install at the user level.
-Once published remotely, the source can be replaced with the actual `OWNER/dev-helper-marketplace`; this project has not set a GitHub owner yet.
-
-Installed content comes only from the selected `plugins/<plugin-name>/skills/<skill-name>/`. docs-consistency-guard currently brings
-`SKILL.md`, `scripts/docs_guard.py`, three references, and the MIT `LICENSE`.
-`tests/`, `examples/`, the collection README, CI, plugin settings, and Python packaging settings are not inside the skill directory.
-Lockfiles or agent install directories created by Skills CLI itself are the installer's own management data.
 
 Skills CLI installs files; it does not install Python or PyYAML for you.
 docs-consistency-guard needs Python 3.10+ on Linux/macOS; the MkDocs check also needs PyYAML.
@@ -44,18 +38,18 @@ For each agent, choose either the plugin or the standalone skill install, so the
 Add the marketplace first, then pick the plugin to install. This installs only docs-consistency-guard:
 
 ```sh
-claude plugin marketplace add /absolute/path/to/dev-helper-marketplace
+claude plugin marketplace add leotsaiCode/dev-helper-marketplace
 claude plugin install docs-consistency-guard@dev-helper-marketplace
 ```
 
 In Claude Code, use `/docs-consistency-guard:docs-consistency-guard`.
-To try it without installing, run `claude --plugin-dir /absolute/path/to/dev-helper-marketplace/plugins/docs-consistency-guard`.
+To try a local checkout without installing, run `claude --plugin-dir plugins/docs-consistency-guard` from the repo root.
 See the [Claude plugin manifest](plugins/docs-consistency-guard/.claude-plugin/plugin.json) for settings.
 
 ## Codex plugin
 
 ```sh
-codex plugin marketplace add /absolute/path/to/dev-helper-marketplace
+codex plugin marketplace add leotsaiCode/dev-helper-marketplace
 codex plugin add docs-consistency-guard@dev-helper-marketplace
 ```
 
@@ -118,11 +112,11 @@ The install check is marked with the `integration` marker. It uses the real Skil
 and confirms no tests, examples, plugin, or collection-level settings leak in. It does not modify skills you have already installed;
 fetching Skills CLI the first time may need the network. CI runs both the unit tests and this install check.
 
-The terminal tool is still available:
+The terminal tool is still available. Run it from the project you want to check:
 
 ```sh
-uv run --no-editable --extra mkdocs docs-consistency-guard \
-  --root /path/to/your-repository --format markdown
+uvx --from git+https://github.com/leotsaiCode/dev-helper-marketplace --with pyyaml \
+  docs-consistency-guard --root . --format markdown
 ```
 
 This Python package provides the CLI only and does not register agent skills; install the Agent Skill through Skills CLI or a plugin as described above.

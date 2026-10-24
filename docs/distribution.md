@@ -27,8 +27,8 @@ Official sources:
 - [OpenAI plugin packaging](https://developers.openai.com/plugins/build/plugins)
   for the supported compatibility manifest and native marketplace format.
 
-Skills CLI 1.7.4 is pinned in the installation verification and examples so the
-payload checks are reproducible. The verifier works in temporary project
+Skills CLI 1.7.4 is pinned in the installation verification so the payload
+checks are reproducible. The README examples stay unpinned. The verifier works in temporary project
 directories and disables installer telemetry. It does not alter global agent
 installations or the user's plugin configuration.
 
