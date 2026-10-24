@@ -1,0 +1,8 @@
+{
+  "name": "docs-consistency-guard",
+  "version": "0.1.0",
+  "description": "Read-only documentation consistency checks and review candidates.",
+  "author": {"name": "dev-helper-marketplace contributors"},
+  "license": "MIT",
+  "skills": "./skills/"
+}

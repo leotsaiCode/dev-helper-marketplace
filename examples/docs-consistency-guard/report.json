@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "summary": {
+    "documents": 3,
+    "findings": 6,
+    "errors": 2,
+    "candidates": 4,
+    "incomplete": false
+  },
+  "coverage": {
+    "scanned": [
+      "AGENTS.md",
+      "README.md",
+      "docs/setup.md"
+    ],
+    "configs": [
+      "mkdocs.yml"
+    ],
+    "skipped": [],
+    "limitations": [
+      "Conservative Markdown subset; no HTML, nested-parenthesis destinations, anchors, external URLs or rendered routes checked.",
+      "No code/version/git-age verification; semantic results are review candidates only.",
+      "Hidden, sensitive, dependency/build directories and directory symlinks excluded by policy.",
+      "No MkDocs plugins, hooks, inheritance, environment expansion, exclude_docs or generated routes evaluated."
+    ]
+  },
+  "findings": [
+    {
+      "rule": "duplicate.paragraph",
+      "certainty": "inference",
+      "severity": "warning",
+      "path": "AGENTS.md",
+      "line": 5,
+      "message": "Normalized prose paragraph repeats. Decide whether to consolidate or retain intentional repetition.",
+      "related": [
+        {
+          "path": "README.md",
+          "line": 8
+        }
+      ]
+    },
+    {
+      "rule": "stale.candidate",
+      "certainty": "inference",
+      "severity": "warning",
+      "path": "README.md",
+      "line": 4,
+      "message": "Maintenance/deprecation marker found; it may be intentional. Verify current behavior and ownership.",
+      "related": []
+    },
+    {
+      "rule": "rule.conflict_candidate",
+      "certainty": "inference",
+      "severity": "warning",
+      "path": "README.md",
+      "line": 6,
+      "message": "Opposite normative wording for the same normalized action. Check scope, exceptions and instruction precedence.",
+      "related": [
+        {
+          "path": "AGENTS.md",
+          "line": 3
+        }
+      ]
+    },
+    {
+      "rule": "stale.candidate",
+      "certainty": "inference",
+      "severity": "warning",
+      "path": "docs/setup.md",
+      "line": 3,
+      "message": "Maintenance/deprecation marker found; it may be intentional. Verify current behavior and ownership.",
+      "related": []
+    },
+    {
+      "rule": "link.missing",
+      "certainty": "deterministic",
+      "severity": "error",
+      "path": "docs/setup.md",
+      "line": 7,
+      "message": "Relative link has no local filesystem target (source-path check only).",
+      "related": [
+        {
+          "path": "docs/missing.md",
+          "line": null
+        }
+      ]
+    },
+    {
+      "rule": "nav.missing",
+      "certainty": "deterministic",
+      "severity": "error",
+      "path": "mkdocs.yml",
+      "line": null,
+      "message": "No local source file at nav target. Confirm relative external URLs or generated pages before changing nav.",
+      "related": [
+        {
+          "path": "docs/absent.md",
+          "line": null
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "source": "mkdocs.yml",
+      "target": "docs/setup.md",
+      "line": null,
+      "kind": "nav"
+    },
+    {
+      "source": "mkdocs.yml",
+      "target": "docs/absent.md",
+      "line": null,
+      "kind": "nav"
+    },
+    {
+      "source": "README.md",
+      "target": "docs/setup.md",
+      "line": 10,
+      "kind": "link"
+    },
+    {
+      "source": "docs/setup.md",
+      "target": "docs/missing.md",
+      "line": 7,
+      "kind": "link"
+    },
+    {
+      "source": "docs/setup.md",
+      "target": "README.md",
+      "line": 8,
+      "kind": "link"
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "README.md",
+      "line": 5,
+      "kind": "duplicate"
+    },
+    {
+      "source": "README.md",
+      "target": "AGENTS.md",
+      "line": 6,
+      "kind": "rule"
+    }
+  ],
+  "sync_scope": [
+    {
+      "changed": "docs/setup.md",
+      "review": [
+        {
+          "path": "README.md",
+          "reasons": [
+            "incoming link",
+            "literal path mention (candidate)",
+            "outgoing link"
+          ]
+        },
+        {
+          "path": "mkdocs.yml",
+          "reasons": [
+            "incoming nav"
+          ]
+        }
+      ]
+    },
+    {
+      "changed": "src/client.py",
+      "review": [
+        {
+          "path": "docs/setup.md",
+          "reasons": [
+            "literal path mention (candidate)"
+          ]
+        }
+      ]
+    }
+  ]
+}

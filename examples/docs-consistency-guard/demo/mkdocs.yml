@@ -1,0 +1,6 @@
+site_name: Guard demo
+docs_dir: docs
+nav:
+  - Setup: setup.md
+  - Missing: absent.md
+  - External: https://example.com/
